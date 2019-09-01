@@ -5,6 +5,7 @@
     "format": "xo . --fix"
   },
   "devDependencies": {
+    "tape": "^4.11.0",
     "xo": "latest"
   },
   "xo": {
