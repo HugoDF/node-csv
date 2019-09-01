@@ -25,13 +25,12 @@ test('should parse standard entry', async t => {
   t.deepEqual(actual, expected);
 });
 
-
 const extraColumnsCsv = `title,other,value
 hello world,what,value,extra,value`;
 
 test('should ignore extra columns', async t => {
   t.plan(1);
-  const actual = await csvParser(multilineCsv);
+  const actual = await csvParser(extraColumnsCsv);
   const expected = [{title: 'hello world', other: 'what', value: 'value'}];
   t.deepEqual(actual, expected);
 });
@@ -41,17 +40,18 @@ const quoteCommaCsv = `title,other,value
 
 test.skip('should handle quoted commas', async t => {
   t.plan(1);
-  const actual = await csvParser(multilineCsv);
-  const expected = [{title: 'hello "comma", "world"', other: 'what', value: 'value'}];
-  t.deepEqual(actual, expected); 
-})
+  const actual = await csvParser(quoteCommaCsv);
+  const expected = [
+    {title: 'hello "comma", "world"', other: 'what', value: 'value'}
+  ];
+  t.deepEqual(actual, expected);
+});
 
 const newLineCsv = `title,other,values
 "Hello\nworld",what,value`;
 
 test.skip('should parse quoted newline correctly', async t => {
   t.plan(1);
-  return t.pass();
   const actual = await csvParser(newLineCsv);
   const expected = [{title: 'Hello\nworld', other: 'what', values: 'values'}];
   t.deepEqual(actual, expected);
