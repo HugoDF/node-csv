@@ -21,6 +21,7 @@ function csvParser(csvText) {
     return getValues(csv).reduce((acc, curr, idx) => {
       if (idx > columnCount) return acc;
       const fieldName = nameByColumnNumber[idx];
+      if (!fieldName) return acc;
       acc[fieldName] = curr;
       return acc;
     }, {});
