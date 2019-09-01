@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "test": "tape *.test.js",
     "lint": "xo .",
     "format": "xo . --fix"
   },
